@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
+import { Post } from './post.model';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -39,7 +41,7 @@ export class AppComponent implements OnInit {
 
   private fetchPosts() {
     this.http
-      .get('https://angular-hhtp-requests.firebaseio.com/posts.json')
+      .get<{ [key: string]: Post }>('https://angular-hhtp-requests.firebaseio.com/posts.json')
       .pipe(
         map(responseData => {
           const postsArray = [];
