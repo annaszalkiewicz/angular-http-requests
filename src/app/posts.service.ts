@@ -12,19 +12,16 @@ export class PostsService {
   constructor(private http: HttpClient ) { }
 
   addPost(title: string, content: string ) {
-    const postData: Post = { title, content }
-    this.http
+    const postData: Post = { title, content };
+    return this.http
       .post<{ name: string }>(
         'https://angular-hhtp-requests.firebaseio.com/posts.json',
         postData
-      )
-      .subscribe(responseData => {
-        console.log(responseData);
-      });
+      );
   }
 
   fetchPosts() {
-    this.http
+    return this.http
       .get<{ [key: string]: Post }>('https://angular-hhtp-requests.firebaseio.com/posts.json')
       .pipe(
         map(responseData => {
@@ -36,9 +33,6 @@ export class PostsService {
           }
           return postsArray;
         })
-      )
-      .subscribe(posts => {
-        console.log(posts);
-      });
+      );
   }
 }
