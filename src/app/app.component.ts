@@ -33,6 +33,8 @@ export class AppComponent implements OnInit {
     this.postsService.addPost(postData.title, postData.content)
       .subscribe(responseData => {
         console.log(responseData);
+      }, error => {
+        this.error = error.message;
       });
   }
 
