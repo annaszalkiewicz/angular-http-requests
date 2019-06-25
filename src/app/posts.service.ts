@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 
 import { Post } from './post.model';
+import { pipe } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,10 @@ export class PostsService {
           return postsArray;
         })
       );
+  }
+
+  deletePosts() {
+    return this.http
+      .delete<{ [key: string]: Post }>('https://angular-hhtp-requests.firebaseio.com/posts.json');
   }
 }
