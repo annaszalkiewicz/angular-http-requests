@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 
@@ -25,7 +25,8 @@ export class PostsService {
     return this.http
       .get<{ [key: string]: Post }>('https://angular-hhtp-requests.firebaseio.com/posts.json',
       {
-        headers: new HttpHeaders({ 'Custom-Header': 'Hello' })
+        headers: new HttpHeaders({ 'Custom-Header': 'Hello' }),
+        params: new HttpParams().set('print', 'pretty')
       })
       .pipe(
         map(responseData => {
