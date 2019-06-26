@@ -26,8 +26,9 @@ export class PostsService {
       .get<{ [key: string]: Post }>('https://angular-hhtp-requests.firebaseio.com/posts.json',
       {
         headers: new HttpHeaders({ 'Custom-Header': 'Hello' }),
-        params: new HttpParams().set('print', 'pretty')
-      })
+        params: new HttpParams().set('print', 'pretty'),
+        responseType: 'json'
+       })
       .pipe(
         map(responseData => {
           const postsArray = [];
